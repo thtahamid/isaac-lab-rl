@@ -1,0 +1,12 @@
+- install or update python3.11
+- check nvidia gpu driver and cuda version (nvisia-smi)
+- create an env with python 3.11
+- upgrade pip
+- install pytorch
+- install and run isaac sim
+- clone isaac lab (https://github.com/isaac-sim/IsaacLab.git)
+- run instance
+- run demo
+- follow instructions from the official doc
+- doc (https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html)
+- 
