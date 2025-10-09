@@ -15,4 +15,11 @@
 - run demo
 - follow instructions from the official doc
 - doc (https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html)
-- 
+
+
+
+- Train a example policies
+    - python scripts/reinforcement_learning/rsl_rl/train.py --task=Isaac-Velocity-Rough-Anymal-C-v0 --num_envs=5000 --headless
+
+- Run the policies
+    - python scripts/reinforcement_learning/rsl_rl/play.py --task=Isaac-Velocity-Rough-Anymal-C-v0 --num_envs=20
