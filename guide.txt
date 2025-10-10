@@ -29,3 +29,6 @@
 
 - mac ssh to isaac-sim-lab aws instance
     - /Users/th/.ssh/isaac-sim-lab.pem ubuntu@ec2-3-28-126-137.me-central-1.compute.amazonaws.com
+
+- windows ssh to isaac-sim-lab aws instance
+    - PS C:\Users\mitah> ssh -i .\.ssh\isaac-sim-lab.pem ubuntu@ec2-3-28-126-137.me-central-1.compute.amazonaws.com
