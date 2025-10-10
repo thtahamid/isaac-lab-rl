@@ -23,3 +23,9 @@
 
 - Run the policies
     - python scripts/reinforcement_learning/rsl_rl/play.py --task=Isaac-Velocity-Rough-Anymal-C-v0 --num_envs=20
+
+
+
+
+- mac ssh to isaac-sim-lab aws instance
+    - /Users/th/.ssh/isaac-sim-lab.pem ubuntu@ec2-3-28-126-137.me-central-1.compute.amazonaws.com
