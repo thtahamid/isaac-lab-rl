@@ -1,5 +1,5 @@
 - install or update python3.11
-- check nvidia gpu driver and cuda version (nvisia-smi)
+- check nvidia gpu driver and cuda version (nvidia-smi)
 - setup git and github in the system
 - create an env with python 3.11
     -- python3.11 -m venv env_isaaclab
