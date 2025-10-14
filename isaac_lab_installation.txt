@@ -1,16 +1,24 @@
 - install or update python3.11
 - check nvidia gpu driver and cuda version (nvidia-smi)
-- setup git and github in the system
-- create an env with python 3.11
+# setup git and github in the system
+    -- git
+    -- git config --global user.name "Your Name"
+    -- -- 
+# create an env with python 3.11
     -- python3.11 -m venv env_isaaclab
     -- .\env_isaaclab\Scripts\activate (windows)
     -- source env_isaaclab/bin/activate
-- upgrade pip
-- install pytorch
-- install and run isaac sim
-- clone isaac lab (https://github.com/isaac-sim/IsaacLab.git)
+# upgrade pip 
+    -- pip install --upgrade pip
+# install pytorch 
+    -- pip install torch==2.7.0 torchvision==0.22.0 --index-url https://download.pytorch.org/whl/cu128
+# install and run isaac sim pip package 
+    -- pip install "isaacsim[all,extscache]==5.0.0" --extra-index-url https://pypi.nvidia.com
+# clone isaac lab 
+    -- git clone https://github.com/isaac-sim/IsaacLab.git
     -- cd IsaacLab-main
     -- .\isaaclab.bat --install (windows)
+    -- 
 - run instance
 - run demo
 - follow instructions from the official doc

@@ -1,0 +1,9 @@
+# install tilix
+
+# customize terminal prompt
+    - nano ~/.bashrc
+    # Custom prompt: (venv) in green, folder in purple
+    PROMPT_COMMAND='PS1="${VIRTUAL_ENV:+\[\033[0;32m\]($(basename $VIRTUAL_ENV))\[\033[0m\] }\\[\033[0;35m\]\W\[\033[0m\]\$ "'
+    - ctl + o, enter, ctl + x
+    - source ~/.bashrc
+    
