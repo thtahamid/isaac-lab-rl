@@ -4,7 +4,7 @@ Doc: https://docs.aws.amazon.com/dcv/latest/adminguide/setting-up-installing-lin
 # Prerequisites
 
 # Install a desktop environment and desktop manager
-- time sudo apt update
+time sudo apt update
 - time sudo apt install ubuntu-desktop
 - sudo apt install gdm3
   # Verify GDM3 is set as default
