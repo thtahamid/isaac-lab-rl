@@ -1,6 +1,6 @@
 # Isaac Lab — Installation & Quick Start
 
-This guide captures common steps to prepare a machine for running Isaac Lab / Isaac Sim, create a Python 3.11 virtual environment, install dependencies, and run example training/playback commands. It matches the style used in `AWS_DCV.md` with clear headings and copyable command blocks.
+This guide captures common steps to prepare a machine for running Isaac Lab / Isaac Sim, create a Python 3.11 virtual environment, install dependencies, and run example training/playback commands.
 
 Official docs:
 
