@@ -1,0 +1,31 @@
+The Problem
+Isaac Sim's bundled PyTorch libraries (libcusparse.so.12) are looking for CUDA 12.8 symbols, but your system has CUDA 13.0. The symbol __nvJitLinkCreate_12_8 doesn't exist in CUDA 13.0.
+
+Solutions to Try
+Option 1: Use Isaac Sim's bundled CUDA libraries (Recommended)
+
+
+unset LD_LIBRARY_PATH && ./isaac-sim.sh
+Perfect! Isaac Sim is now running successfully! 🎉
+
+What Fixed It
+The solution was to clear the LD_LIBRARY_PATH environment variable by running:
+
+
+unset LD_LIBRARY_PATH && ./isaac-sim.sh
+Why This Worked
+Your system CUDA 13.0 libraries were conflicting with Isaac Sim's bundled CUDA 12.x libraries
+By unsetting LD_LIBRARY_PATH, Isaac Sim now uses its own bundled libraries instead of trying to mix system CUDA 13.0 with its internal PyTorch CUDA 12.8 dependencies
+Isaac Sim ships with all the CUDA libraries it needs - it doesn't require system CUDA to be in the library path
+Current Status
+Isaac Sim is now running with:
+
+✅ All extensions loaded successfully
+✅ ROS2 bridge loaded (using internal rclpy for Humble distro)
+✅ App is ready at 18 seconds
+⚠️ Only deprecation warnings (these are normal and non-critical)
+The app should now be fully functional! If you need to run it again in the future, just use:
+
+
+unset LD_LIBRARY_PATH && ./isaac-sim.sh
+Or add this to the beginning of the isaac-sim.sh script to make it permanent.
