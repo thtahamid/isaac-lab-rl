@@ -165,29 +165,97 @@ sudo dcv create-session isaac-session --type=console --owner ubuntu
 dcv list-sessions
 ```
 
-## 8) Auto-create a DCV session on boot (optional)
+## ✅ Step-by-Step : Auto-Create DCV Session on Boot
 
-If you want a session created automatically on boot, consider adding a small systemd unit or a startup script that runs the `dcv create-session` command if no session exists. Example (simple systemd service):
+### 1. Create a systemd service for auto-starting your session
+
+Run:
+
+```bash
+sudo nano /etc/systemd/system/dcv-autosession.service
+```
+
+Paste this content:
 
 ```ini
 [Unit]
-Description=Create DCV session on boot
-After=dcvserver.service
+Description=Auto-create AWS DCV console session
+After=network-online.target dcvserver.service
+Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/dcv create-session isaac-session --type=console --owner ubuntu || true
+ExecStart=/usr/local/bin/dcv-autosession.sh
+RemainAfterExit=yes
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 ```
 
-Save this as `/etc/systemd/system/dcv-create-session.service`, then enable it:
+Save and exit.
 
-```sh
-sudo systemctl daemon-reload
-sudo systemctl enable --now dcv-create-session.service
+---
+
+### 2. Create the session script
+
+Now create the script that actually creates the session:
+
+```bash
+sudo nano /usr/local/bin/dcv-autosession.sh
 ```
+
+Paste this:
+
+```bash
+#!/bin/bash
+
+SESSION_NAME="isaac-session"
+OWNER="ubuntu"
+
+# Wait for DCV server to be ready
+sleep 10
+
+# Check if session already exists
+if ! sudo dcv list-sessions | grep -q "$SESSION_NAME"; then
+  echo "Creating DCV session: $SESSION_NAME"
+  sudo dcv create-session "$SESSION_NAME" --type=console --owner "$OWNER"
+else
+  echo "DCV session $SESSION_NAME already exists."
+fi
+```
+
+Save and make it executable:
+
+```bash
+sudo chmod +x /usr/local/bin/dcv-autosession.sh
+```
+
+---
+
+### 3. Enable the service
+
+Run:
+
+```bash
+sudo systemctl enable dcv-autosession.service
+```
+
+This makes it run automatically on every reboot.
+
+---
+
+### 4. Reboot and verify
+
+After reboot, check:
+
+```bash
+sudo systemctl status dcv-autosession
+sudo dcv list-sessions
+```
+
+You should see a session named `isaac-session` created automatically.
+
+---
 
 ---
 
