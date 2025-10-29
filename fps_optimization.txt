@@ -1,0 +1,36 @@
+Solutions to improve viewport navigation
+1. Disable all but one viewport
+This is the most critical step for improving GUI performance during a running multi-environment simulation. Your Python code should explicitly manage which environments are rendered.
+Python script example:
+Get a list of all viewports.
+Disable updates for all viewports except the one you want to view.
+Example code (you may need to adapt for your specific version):
+python
+from omni.kit.viewport.utility import get_viewports_with_updates_enabled, get_active_viewport
+
+# Get all viewports
+viewports = get_viewports_with_updates_enabled()
+
+# Get the viewport you want to keep active
+active_viewport = get_active_viewport()
+
+# Disable updates for all others
+for viewport in viewports:
+    if viewport != active_viewport:
+        viewport.updates_enabled = False
+Use code with caution.
+
+ 
+2. Reduce visual quality
+For visualization during policy evaluation, you don't need high-fidelity rendering.
+Switch to Eco Mode: In the Isaac Sim UI, go to Render Settings and switch the rendering mode to "RTX - Realtime" or "Eco Mode" if available. This prioritizes speed over visual quality.
+Adjust DLSS: Go to the Render Settings > Common > Post Processing section and set the DLSS mode to Performance (mode 0).
+Disable features: In Render Settings, disable computationally expensive features like Ambient Occlusion, Reflections, and Shadows. 
+3. Optimize the scene
+If you are still experiencing lag after adjusting rendering settings, consider the scene's complexity. 
+Lower resolution: If your screen resolution is high, try setting the viewport resolution to a lower value like 1080p or 720p.
+Simplify meshes: Replace high-polygon visual meshes with simplified collision meshes (like cubes or capsules) for rendering where possible. Your physics already uses these for calculation, so the visual representation can be simplified without impacting policy evaluation. 
+4. Maximize simulation speed independently
+As previously discussed, if you are not actively debugging the scene, run your evaluation script in headless mode to completely eliminate the rendering bottleneck and get the true performance of your policy. 
+By applying these steps, you can prevent the graphics pipeline from becoming the bottleneck during interactive sessions, ensuring a smooth viewport experience while the simulation runs at its optimized speed.
+
